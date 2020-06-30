@@ -11,7 +11,7 @@ if __name__ == '__main__':
 	loader.login('', '')
 
 	# Coleta de info de um perfil
-	'''
+	
 	username = ""
 	profile = instaloader.Profile.from_username(loader.context, username)
 	user_id = profile.userid
@@ -21,7 +21,7 @@ if __name__ == '__main__':
 	print('\n')
 	loader.download_profilepic(profile)
 	loader.download_tagged(profile, fast_update=False, target=None, post_filter=None)
-	'''
+	
 	#Coleta highlights de um perfil
 	# >> Precisa estar logado
 	'''
@@ -30,33 +30,37 @@ if __name__ == '__main__':
 			loader.download_storyitem(item, '{}/{}'.format(highlight.owner_username, highlight.title))
 	'''
 	# Coleta posts de um perfil
-	'''
+	
 	posts = profile.get_posts()
 
+	filtro_posts = 'corona'
 	counter = 1
 	for post in posts:
 	
 		print('Post ' + str(counter))
-		loader.download_post(post, username)
+		if filtro_posts == '':
+			loader.download_post(post, username)
+		elif post.caption is not None:
+			if filtro_posts in post.caption:
+				loader.download_post(post, username)
 		print(post.caption)
 		print(post.owner_profile)
 		print('Data de postagem: ' + str(post.date_local))
-		#print('tagged users: '+str(post.tagged_users))
-	'''
+	
 		# Com um post voce pode coletar os comments e com um comment, as replies dele
-	'''
+		'''
 		comments = post.get_comments()
-
+		
 		for comment in comments:
 			print(comment.text)
 			replies = comment.answers
 
 			for reply in replies:
 				pass
-
+		'''
 		print('\n')
 		counter += 1
-	'''
+	
 	# Coleta da rede do perfil
 	# >> para esse tipo de coleta tem que logar no Instagram
 	'''
