@@ -29,23 +29,30 @@ if __name__ == '__main__':
 		for item in highlight.get_items():
 			loader.download_storyitem(item, '{}/{}'.format(highlight.owner_username, highlight.title))
 	'''
+
 	# Coleta posts de um perfil
 	
 	posts = profile.get_posts()
 
-	filtro_posts = 'corona'
+	filtro_posts = 'máscara'
 	counter = 1
 	for post in posts:
 	
 		print('Post ' + str(counter))
 		if filtro_posts == '':
 			loader.download_post(post, username)
+			print(post.caption)
+			print(post.owner_profile)
+			print('Data de postagem: ' + str(post.date_local))
 		elif post.caption is not None:
 			if filtro_posts in post.caption:
 				loader.download_post(post, username)
-		print(post.caption)
-		print(post.owner_profile)
-		print('Data de postagem: ' + str(post.date_local))
+				print(post.caption)
+				print(post.owner_profile)
+				print('Data de postagem: ' + str(post.date_local))
+			else:
+    		 	 print('A legenda do post não contém a palavra "' + filtro_posts + '"')
+		
 	
 		# Com um post voce pode coletar os comments e com um comment, as replies dele
 		'''
