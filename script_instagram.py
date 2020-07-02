@@ -2,6 +2,7 @@
 
 #>>> pip install instaloader
 import instaloader
+import hashtags_module
 
 if __name__ == '__main__':
 	# >> Para ver os atributos de cada classe e ter mais informacoes: https://instaloader.github.io/as-module.html
@@ -84,14 +85,11 @@ if __name__ == '__main__':
 	loader.download_stories(userids=[profile.userid], filename_target='{}'.format(profile.username), fast_update=True)
 	'''
 	# Coleta info de uma hashtag
-	'''
-	tag = "coronavirus"
-	hashtag = instaloader.Hashtag.from_name(loader.context, tag)
-	tag_id = hashtag.hashtagid
-	print('Hashtag: #' + str(hashtag.name) + '  --  ID: ' + str(tag_id))
-	print('Posts count: ' + str(hashtag.mediacount))
-	print('\n')
-	#Faz download dos posts associados com a hashtag
-	for post in hashtag.get_posts():
-		loader.download_post(post, target="#"+hashtag.name)
-	'''
+
+	
+	tag = input("Digite a hashtag a ser coletada, sem o caractere '#': ")
+	counter = int (input("Digite o número de posts pra coleta: "))
+
+	shortcodes = hashtags_module.download_hashtag(counter, tag)
+	likes = hashtags_module.pega_likes(shortcodes)
+	comentarios = hashtags_module.pega_comentarios(shortcodes)
