@@ -11,11 +11,11 @@ if __name__ == '__main__':
 
 	# O interactive_login recebe username como parâmetro, necessário para alguns processos e para a coleta de perfis privados.
 	# A senha deve ser preenchida no terminal.
-	loader.interactive_login('julia_stancioli')
+	loader.interactive_login('--usuario_para_login--')
 
 	# Coleta de info de um perfil
 
-	username = "julia_stancioli"
+	username = "--usuario--"
 	profile = instaloader.Profile.from_username(loader.context, username)
 	user_id = profile.userid
 	full_name = profile.full_name
@@ -49,22 +49,20 @@ if __name__ == '__main__':
 
 	filtro_comments = '' # Palavra-chave de interesse nos comentários
 
+	filtro_replies = '' # Palavra-chave de interesse nas replies
+
 	numero_do_post = 1 # Enumerando os posts para fins de organizacao
+
 	for post in posts:
-	
-		print('Post ' + str(numero_do_post)) # Contagem dos posts
 
 		if filtro_posts == '': # Sem filtro de palavra-chave	
 
-			posts_module.filtra_datas(post, username, filtro_comments, filtro_temporal_inicio, filtro_temporal_fim)
+			posts_module.filtra_datas(numero_do_post, post, username, filtro_comments, filtro_replies, filtro_temporal_inicio, filtro_temporal_fim)
 
 		elif post.caption is not None:
+    			
+			if filtro_posts in post.caption:  # Filtro por palavra-chave
 
-			posts_module.filtra_datas(post, username, filtro_comments, filtro_temporal_inicio, filtro_temporal_fim)
+				posts_module.filtra_datas(numero_do_post, post, username, filtro_comments, filtro_replies, filtro_temporal_inicio, filtro_temporal_fim)
 
-		else:
-    		 print('A legenda do post não contém a palavra "' + filtro_posts + '"')
-
-
-		print('\n')
 		numero_do_post += 1
