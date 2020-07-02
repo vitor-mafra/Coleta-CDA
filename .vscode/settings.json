@@ -1,0 +1,6 @@
+{
+    "python.pythonPath": "C:\\Users\\gabmt\\.conda\\envs\\insta_crawler\\python.exe",
+    "python.linting.flake8Enabled": false,
+    "python.linting.pylintEnabled": true,
+    "python.linting.enabled": true
+}
