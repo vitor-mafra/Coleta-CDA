@@ -48,22 +48,17 @@ e a palavra-chave de interesse nas replies (filtro_replies). Ela busca todos os 
 def filtra_comentarios(post, filtro_comments, filtro_replies):
 	comments = post.get_comments()
 	if comments is not None:
-    		
 		print('Comentários: ')
 		print('\n')
 
 		for comment in comments:
 
 			if filtro_comments == '':
-
 				mostra_comentarios(comment)
-
 				filtra_replies(comment, filtro_replies)
 
 			elif filtro_comments in comment.text:
-
 				mostra_comentarios(comment)
-
 				filtra_replies(comment, filtro_replies)
 
 
@@ -78,20 +73,16 @@ def filtra_replies(comment, filtro_replies):
 		numero_da_reply = 1 # Contagem das replies
 
 		for reply in replies:
-    			
 			print('Reply ' + str(numero_da_reply))
 			print('\n')
 				
 			if filtro_replies == '':
-				
 				mostra_replies(reply)
 
 			elif filtro_replies in reply.text:
-
 				mostra_replies(reply)
 			
 			else:
-    			
 				print('A reply não contém a palavra "' + str(filtro_replies) + '"')
 			
 			numero_da_reply += 1
@@ -108,33 +99,25 @@ def filtra_datas(numero_do_post, post, username, filtro_comments, filtro_replies
 				filtro_temporal_inicio, filtro_temporal_fim):
 
 	if filtro_temporal_inicio == '' and filtro_temporal_fim == '':  # Sem filtro por intervalo de tempo
-
 		download_componentes(numero_do_post, post, username, filtro_comments, filtro_replies)
 
 	elif filtro_temporal_inicio != '' and filtro_temporal_fim == '' : # Apenas data de início como filtro
-
 		filtro_temporal_inicio = datetime.strptime(filtro_temporal_inicio, "%Y-%m-%d") # Formatação %Y-%m-%d 00:00:00
 		
 		if post.date_local >= filtro_temporal_inicio:
-
 			download_componentes(numero_do_post, post, username, filtro_comments, filtro_replies)
 
 	elif filtro_temporal_inicio == '' and filtro_temporal_fim != '': # Apenas data final como filtro
-
 		filtro_temporal_fim = datetime.strptime(filtro_temporal_fim, "%Y-%m-%d") # Formatação %Y-%m-%d 00:00:00
 
 		if post.date_local <= filtro_temporal_fim:
-
 			download_componentes(numero_do_post, post, username, filtro_comments, filtro_replies)
 
 	else:  # Intervalo de tempo definido como filtro
-		
 		filtro_temporal_inicio = datetime.strptime(filtro_temporal_inicio, "%Y-%m-%d") # Formatação %Y-%m-%d 00:00:0
-		
 		filtro_temporal_fim = datetime.strptime(filtro_temporal_fim, "%Y-%m-%d") # Formatação %Y-%m-%d 00:00:00
 
 		if post.date_local >= filtro_temporal_inicio and post.date_local <= filtro_temporal_fim: 
-
 			download_componentes(numero_do_post, post, username, filtro_comments, filtro_replies)
 
 

@@ -42,27 +42,18 @@ if __name__ == '__main__':
 	posts = profile.get_posts()
 
 	filtro_temporal_inicio = '' # Formato %Y-%m-%d ou vazio
-
 	filtro_temporal_fim = ''  # Formato %Y-%m-%d ou vazio
-
 	filtro_posts = '' # Palavra-chave de interesse na legenda
-
 	filtro_comments = '' # Palavra-chave de interesse nos comentários
-
 	filtro_replies = '' # Palavra-chave de interesse nas replies
 
 	numero_do_post = 1 # Enumerando os posts para fins de organizacao
 
 	for post in posts:
-
 		if filtro_posts == '': # Sem filtro de palavra-chave	
-
 			posts_module.filtra_datas(numero_do_post, post, username, filtro_comments, filtro_replies, filtro_temporal_inicio, filtro_temporal_fim)
-
 		elif post.caption is not None:
-    			
 			if filtro_posts in post.caption:  # Filtro por palavra-chave
-
 				posts_module.filtra_datas(numero_do_post, post, username, filtro_comments, filtro_replies, filtro_temporal_inicio, filtro_temporal_fim)
-
+				
 		numero_do_post += 1
