@@ -3,16 +3,20 @@ loader = instaloader.Instaloader()
 from datetime import datetime
 
 '''
-A função "mostra_atributos" recebe como parâmetros post e usuário (username) e exibe no terminal as informações "Data de postagem", 
-"Localização", "Número de curtidas", "Usuários marcados" e "Usuários mencionados" para cada um dos posts de um dado usuário.
+A função "mostra_atributos" recebe como parâmetros post e usuário (username) e exibe no terminal as informações "Data de postagem", "Localização", "Número de curtidas", 
+"Número de visualizações" (em caso de vídeo), "Usuários marcados", "Usuários mencionados" e "Hashtags" para cada um dos posts de um dado usuário.
 '''
 def mostra_atributos(post, username):
 	print('\n')
 	print('Data de postagem: ' + str(post.date_local))
 	print('Localização: ' + str(post.location))
 	print('Número de curtidas: ' + str(post.likes))
+	if post.is_video == True:
+		print('Número de visualizações: ' + str(post.video_view_count))
+	print('Número de comentários (e replies): ' + str(post.comments))
 	print('Usuários marcados: ' + str(post.tagged_users))
 	print('Usuários mencionados: ' + str(post.caption_mentions))
+	print('Hashtags: ' + str(post.caption_hashtags))
 	print('\n')
 
 
